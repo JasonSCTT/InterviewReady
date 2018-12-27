@@ -1,10 +1,12 @@
 package com.jason.datastructure;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
  *          1
- 2.      3
+         2.      3
      4.   5.   6.   7
              8
  */
@@ -31,6 +33,47 @@ class TreeNode {
         System.out.println("-----------分割线------------");
         // 递归实现
         postOrderNonRecursive(root);
+        System.out.println("--------先序遍历--------------");
+        preOrder(root);
+        System.out.println("------------两种遍历优先----------");
+        printfromtoptobottom(root);
+    }
+
+    /**
+     * 广度优先遍历
+     * @Param root
+     */
+    public static void printfromlefttoright(TreeNode root){
+        Queue<TreeNode> queue =new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            TreeNode temp = queue.poll();
+            if(temp.left!=null){
+                queue.add(temp.left);
+            }
+
+            if(temp.right!=null){
+                queue.add(temp.right);
+            }
+            System.out.println(temp.val);
+        }
+    }
+
+    public static  void printfromtoptobottom(TreeNode root){
+        Stack<TreeNode> stack =new Stack<>();
+        stack.push(root);
+        while(!stack.empty()){
+            TreeNode temp =stack.pop();
+
+            if(temp.right!=null){
+                stack.push(temp.right);
+            }
+
+            if(temp.left!=null){
+                stack.push(temp.left);
+            }
+            System.out.println(temp.val);
+        }
     }
 
     public static void preOrder(TreeNode root) {
